@@ -1,11 +1,11 @@
-using MvcBlogProject.Dal.Concrete;
+using MvcBlogProject.Bll.Services.Concrete;
 
 var builder = WebApplication.CreateBuilder(args);
-
+//var assembly = Assembly.GetExecutingAssembly();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScopedDAL();
+builder.Services.AddScopedBll();
 
 var app = builder.Build();
 

@@ -5,6 +5,7 @@ using MvcBlogProject.Dal.Concrete.Context;
 using MvcBlogProject.Dal.Concrete.Repositories.IdentityRepo;
 using MvcBlogProject.Dal.Concrete.Repositories.StandartRepo;
 using MvcBlogProject.Dal.Entities;
+using MvcBlogProject.Dal.UnitOfWorks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,14 +20,15 @@ namespace MvcBlogProject.Dal.Concrete
 		{
 			services.AddDbContext<StandartContext>(opt =>
 			{
-				string standartCon = "";
-				opt.UseSqlServer(standartCon);
+				string standartCon = "Server=DESKTOP-JM5LJD8\\SQL2022;Database=MvcBlogDb;Trusted_Connection = True";
+				opt.UseLazyLoadingProxies().UseSqlServer(standartCon);
 			})
 				.AddDbContext<AppIdentityContext>(opt =>
 				{
-					string idenityCon = "";
-					opt.UseSqlServer(idenityCon);
+					string idenityCon = "Server=DESKTOP-JM5LJD8\\SQL2022;Database=MvcBlogIdentityDb;Trusted_Connection = True";
+					opt.UseLazyLoadingProxies().UseSqlServer(idenityCon);
 				})
+				.AddScoped<IUnitOfWork,UnitOfWork>()
 				.AddScoped<IArticleRepo, ArticleRepo>()
 				.AddScoped<IUserRepo, UserRepo>()
 				.AddScoped<IRoleRepo, RoleRepo>();
