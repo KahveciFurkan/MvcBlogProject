@@ -17,6 +17,16 @@ namespace MvcBlogProject.Dal.Configuration
             builder.Property(x=>x.Id)
                    .UseIdentityColumn(1,1);
 
+            //builder.HasMany(x => x.Users)
+            //        .WithOne(x => x.Image)
+            //        .HasForeignKey(x => x.ImageId)
+            //        .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(x => x.Articles)
+                    .WithOne(x => x.Image)
+                    .HasForeignKey(x => x.ImageId);
+
+
             builder.HasData(new Image
             {
                 Id = 1,

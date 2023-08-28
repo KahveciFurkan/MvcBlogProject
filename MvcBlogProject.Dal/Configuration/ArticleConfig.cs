@@ -26,10 +26,15 @@ namespace MvcBlogProject.Dal.Configuration
                    .HasForeignKey(x => x.CategoryId)
                    .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasOne(x=>x.Image)
+            builder.HasOne(x => x.Image)
                    .WithMany(x => x.Articles)
-                   .HasForeignKey(x => x.ImageId)
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .HasForeignKey(x => x.ImageId);
+
+
+            //builder.HasOne(x => x.User)
+            //       .WithMany(x => x.Articles)
+            //       .HasForeignKey(x => x.UserId)
+            //       .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasData(new Article
             {
@@ -37,8 +42,9 @@ namespace MvcBlogProject.Dal.Configuration
                 ArticleName = "THİS",
                 Content = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.",
                 ViewCount = 15,
-                CategoryId = 1 ,
-                ImageId = 1 ,
+                UserId = 1,
+                CategoryId = 1,
+                ImageId = 1,
                 CreatedBy = "Admin",
                 CreatedDate = DateTime.Now,
             },
@@ -48,6 +54,7 @@ namespace MvcBlogProject.Dal.Configuration
                 ArticleName = "IS",
                 Content = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.",
                 ViewCount = 10,
+                UserId = 2,
                 CategoryId = 1,
                 ImageId = 1,
                 CreatedBy = "Admin",
@@ -59,6 +66,7 @@ namespace MvcBlogProject.Dal.Configuration
                 ArticleName = "MINE",
                 Content = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.",
                 ViewCount = 10,
+                UserId = 2,
                 CategoryId = 1,
                 ImageId = 1,
                 CreatedBy = "Admin",

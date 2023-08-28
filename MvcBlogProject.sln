@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcBlogProject.Dal", "MvcBl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcBlog", "MvcBlog\MvcBlog.csproj", "{FA5DC772-7BD9-404E-9F9A-44E83D2FDEE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcBlogProject.Bll", "MvcBlogProject.Bll\MvcBlogProject.Bll.csproj", "{958E901C-3033-4CDD-9931-4F04987D50D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcBlogProject.Bll", "MvcBlogProject.Bll\MvcBlogProject.Bll.csproj", "{958E901C-3033-4CDD-9931-4F04987D50D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcBlogProject.Shared", "MvcBlogProject.Shared\MvcBlogProject.Shared.csproj", "{82145591-7EC5-48CD-A1F5-CDF63CF23F44}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{958E901C-3033-4CDD-9931-4F04987D50D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{958E901C-3033-4CDD-9931-4F04987D50D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{958E901C-3033-4CDD-9931-4F04987D50D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82145591-7EC5-48CD-A1F5-CDF63CF23F44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82145591-7EC5-48CD-A1F5-CDF63CF23F44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82145591-7EC5-48CD-A1F5-CDF63CF23F44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82145591-7EC5-48CD-A1F5-CDF63CF23F44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

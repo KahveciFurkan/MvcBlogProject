@@ -21,12 +21,12 @@ namespace MvcBlogProject.Dal.Concrete
 			services.AddDbContext<StandartContext>(opt =>
 			{
 				string standartCon = "Server=DESKTOP-JM5LJD8\\SQL2022;Database=MvcBlogDb;Trusted_Connection = True";
-				opt.UseLazyLoadingProxies().UseSqlServer(standartCon);
-			})
-				.AddDbContext<AppIdentityContext>(opt =>
+				opt.UseSqlServer(standartCon).UseLazyLoadingProxies();
+			});
+			services.AddDbContext<AppIdentityContext>(opt =>
 				{
 					string idenityCon = "Server=DESKTOP-JM5LJD8\\SQL2022;Database=MvcBlogIdentityDb;Trusted_Connection = True";
-					opt.UseLazyLoadingProxies().UseSqlServer(idenityCon);
+					opt.UseSqlServer(idenityCon).UseLazyLoadingProxies();
 				})
 				.AddScoped<IUnitOfWork,UnitOfWork>()
 				.AddScoped<IArticleRepo, ArticleRepo>()

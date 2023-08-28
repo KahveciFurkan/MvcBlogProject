@@ -1,4 +1,5 @@
 ﻿using MvcBlogProject.Dal.Entities;
+using MvcBlogProject.Shared.DTOs.Articles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace MvcBlogProject.Bll.Services.Abstract
 {
     public interface IArticleService
     {
-        Task<List<Article>> GetAllArticleAsync();
+        Task<List<ArticleDto>> GetAllArticleAsync();
     }
 }

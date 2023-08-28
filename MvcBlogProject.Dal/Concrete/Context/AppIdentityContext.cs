@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using MvcBlogProject.Dal.Configuration;
 using MvcBlogProject.Dal.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,13 +10,20 @@ using System.Threading.Tasks;
 
 namespace MvcBlogProject.Dal.Concrete.Context
 {
-	public class AppIdentityContext : IdentityDbContext<AppUser,AppRole,int>
+	public class AppIdentityContext : IdentityDbContext<AppUser,AppRole,int/*,AppUserRole,AppUserLogin,AppRoleClaim,AppUserToken*/>
 	{
         public AppIdentityContext(DbContextOptions<AppIdentityContext> opt) : base(opt) 
         {
             
         }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.ApplyConfiguration(new RoleConfig())
+                   .ApplyConfiguration(new UserConfig())
+                   .ApplyConfiguration(new UserRoleConfig());
 
-		public virtual DbSet<AppUserRole> UserRoles { get; set; }
+        }
+
 	}
 }
