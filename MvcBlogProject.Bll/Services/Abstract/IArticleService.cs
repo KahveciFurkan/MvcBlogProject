@@ -12,5 +12,8 @@ namespace MvcBlogProject.Bll.Services.Abstract
     {
         Task<List<ArticleDto>> GetAllArticleWithCategoryNonDeletedAsync();
         Task CreateArticleAsync(ArticleAddDto articleAddDto);
+        Task<ArticleDto> GetArticleWithCategoryNonDeletedAsync(int id);
+        Task<string> UpdateArticleAsync(ArticleUpdateDto articleUpdateDto);
+        Task<string> SafeDeleteArticleAsync(int id);
     }
 }

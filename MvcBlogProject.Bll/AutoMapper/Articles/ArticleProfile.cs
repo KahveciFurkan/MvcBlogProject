@@ -14,6 +14,9 @@ namespace MvcBlogProject.Bll.AutoMapper.Articles
         public ArticleProfile()
         {
             CreateMap<ArticleDto,Article>().ReverseMap();
+            CreateMap<ArticleUpdateDto,Article>().ReverseMap();
+            CreateMap<ArticleUpdateDto,ArticleDto>().ReverseMap();
+            CreateMap<ArticleAddDto,Article>().ReverseMap();
         }
     }
 

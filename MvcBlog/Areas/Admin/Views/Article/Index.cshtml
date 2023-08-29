@@ -37,12 +37,15 @@
                     @foreach (var item in Model)
                     {
                         <tr name="@item.Id">
-                            <th>@item.ArticleName</th>
-                            <th>@item.Category.Name</th>
-                            <th>@item.CreatedDate.ToShortDateString()</th>
-                            <th>@item.CreatedBy</th>
-                            <th>@(item.IsDeleted ? "Aktif Değil" : "Aktif") </th>
-                            <th></th>
+                            <td>@item.ArticleName</td>
+                            <td>@item.Category.Name</td>
+                            <td>@item.CreatedDate.ToShortDateString()</td>
+                            <td>@item.CreatedBy</td>
+                            <td>@(item.IsDeleted ? "Aktif Değil" : "Aktif") </td>
+                            <td>
+                                <a class="btn btn-primary btn-sm" data-id="@item.Id" asp-area="Admin" asp-controller="Article" asp-action="Update" asp-route-id="@item.Id"><i class="bx bxs-edit"></i></a>
+                                <a class="btn btn-danger btn-sm" data-id="@item.Id" asp-area="Admin" asp-controller="Article" asp-action="Delete" asp-route-id="@item.Id"><i class="bx bxs-minus-circle"></i></a>
+                            </td>
                             
                         </tr>
                     }

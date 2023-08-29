@@ -44,5 +44,35 @@ namespace MvcBlog.Bll.Services.Concrete
             return map;
 
         }
+        public async Task<ArticleDto> GetArticleWithCategoryNonDeletedAsync(int id)
+        {
+            var article = await _unitOfWork.GetRepository<Article>().GetAsync(x => !x.IsDeleted && x.Id ==id, x => x.Category);
+            var map = mapper.Map<ArticleDto>(article);
+            return map;
+
+        }
+        public async Task<string> UpdateArticleAsync(ArticleUpdateDto articleUpdateDto)
+        {
+            var article = await _unitOfWork.GetRepository<Article>().GetAsync(x => !x.IsDeleted && x.Id == articleUpdateDto.Id, x => x.Category);
+            
+            article.ArticleName = articleUpdateDto.ArticleName;
+            article.Content = articleUpdateDto.Content;
+            article.CategoryId = articleUpdateDto.CategoryId;
+
+            await _unitOfWork.GetRepository<Article>().UpdateAsync(article);
+            await _unitOfWork.SaveAsync();
+
+            return article.ArticleName;
+        }
+        public async Task<string> SafeDeleteArticleAsync(int id)
+        {
+            var article = await _unitOfWork.GetRepository<Article>().GetByIdAsync(id);
+            article.IsDeleted = true;
+            article.DeletedDate = DateTime.Now;
+
+            await _unitOfWork.GetRepository<Article>().UpdateAsync(article);
+            await _unitOfWork.SaveAsync();
+            return article.ArticleName;
+        }
     }
 }

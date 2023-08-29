@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using MvcBlogProject.Bll.Services.Concrete;
 using MvcBlogProject.Dal.Concrete.Context;
 using MvcBlogProject.Dal.Entities;
+using NToastNotify;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +11,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddScopedBll();
 builder.Services.AddSession();
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddNToastNotifyToastr(new ToastrOptions()
+{
+	PositionClass=ToastPositions.TopRight,
+	TimeOut=3000
+});
 
 //builder.Services.AddScopedDAL();
 //builder.Services.AddStDAL();
@@ -59,7 +64,7 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
+app.UseNToastNotify();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseSession();
