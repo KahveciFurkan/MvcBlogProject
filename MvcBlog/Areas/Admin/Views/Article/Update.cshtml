@@ -31,8 +31,17 @@
                             <textarea asp-for="Content" type="text" class="form-control mb-3" id="defaultFormControlInput" placeholder="Enter Content" aria-describedby="defaultFormControlHelp" style="min-height:300px;"></textarea>
                             <span asp-validation-for="Content" class="text-danger"></span>
                         </div>
-
-
+                        <div class="row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="Image.FileName" class="form-label d-block">Photo</label>
+                            <img style="height:25em;width=25em;" class="mb-3" src="~/images/@Model.Image.FileName" alt="@Model.ArticleName"></img>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="photo" class="form-label">Choose Photo</label>
+                            <input asp-for="photo" type="file" accept="image/*" class="form-control mb-3" id="defaultFormControlInput" aria-describedby="defaultFormControlHelp">
+                            <span asp-validation-for="photo" class="text-danger"></span>
+                        </div>
+                        </div>
                         <div class="form-group">
 
                             <button type="submit" class="btn btn-primary btn-block">Save</button>

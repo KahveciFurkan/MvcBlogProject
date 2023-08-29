@@ -1,4 +1,5 @@
-﻿using MvcBlogProject.Shared.DTOs.Categories;
+﻿using Microsoft.AspNetCore.Http;
+using MvcBlogProject.Shared.DTOs.Categories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace MvcBlogProject.Shared.DTOs.Articles
         public string ArticleName { get; set; }
         public string Content { get; set; }
         public int CategoryId { get; set; }
+        public IFormFile photo { get; set; }
 
         public IList<CategoryDto> Categories { get; set; }
     }

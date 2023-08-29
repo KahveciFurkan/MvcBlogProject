@@ -91,7 +91,7 @@ namespace MvcBlog.Areas.Admin.Controllers
 ;
             articleUpdateDto.Categories = categories;
 
-            return View(articleUpdateDto);
+            return RedirectToAction("Index");
 
         }
         [HttpGet]

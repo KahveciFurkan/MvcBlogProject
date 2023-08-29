@@ -1,8 +1,10 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using MvcBlog.Bll.Services.Concrete;
 using MvcBlogProject.Bll.FluentValidations;
+using MvcBlogProject.Bll.Helpers.Images;
 using MvcBlogProject.Bll.Services.Abstract;
 using MvcBlogProject.Dal.Concrete;
 using System.Reflection;
@@ -18,7 +20,9 @@ namespace MvcBlogProject.Bll.Services.Concrete
 
             services.AddScopedDAL()
                 .AddScoped<IArticleService, ArticleService>()
-                .AddScoped<ICategoryService, CategoryService>();
+                .AddScoped<ICategoryService, CategoryService>()
+                .AddScoped<IImageHelper, ImageHelper>()
+                .AddSingleton<IHttpContextAccessor,HttpContextAccessor>();
 
             services.AddAutoMapper(assembly);
 
