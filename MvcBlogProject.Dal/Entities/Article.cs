@@ -6,7 +6,7 @@ namespace MvcBlogProject.Dal.Entities
 	{
         public string ArticleName { get; set; }
         public string Content { get; set; }
-        public int? ViewCount { get; set; }
+        public int? ViewCount { get; set; } = 0;
         public int? CategoryId { get; set; }
         public virtual Category? Category { get; set; }
         public int? ImageId { get; set; }

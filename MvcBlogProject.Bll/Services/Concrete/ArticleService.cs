@@ -22,9 +22,24 @@ namespace MvcBlog.Bll.Services.Concrete
             _unitOfWork = unitOfWork;
             this.mapper = mapper;
         }
-        public async Task<List<ArticleDto>> GetAllArticleAsync()
+
+        public async Task CreateArticleAsync(ArticleAddDto articleAddDto)
         {
-            var articles = await _unitOfWork.GetRepository<Article>().GetAllAsync();
+            var article = new Article()
+            {
+                ArticleName = articleAddDto.ArticleName,
+                Content = articleAddDto.Content,
+                CategoryId = articleAddDto.CategoryId
+                
+            };
+
+            await _unitOfWork.GetRepository<Article>().AddAsync(article);
+            await _unitOfWork.SaveAsync();
+        }
+
+        public async Task<List<ArticleDto>> GetAllArticleWithCategoryNonDeletedAsync()
+        {
+            var articles = await _unitOfWork.GetRepository<Article>().GetAllAsync(x=>!x.IsDeleted,x=>x.Category);
             var map = mapper.Map<List<ArticleDto>>(articles);
             return map;
 

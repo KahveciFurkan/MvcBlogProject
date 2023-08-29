@@ -14,7 +14,8 @@ namespace MvcBlogProject.Bll.Services.Concrete
 
 
             services.AddScopedDAL()
-                .AddScoped<IArticleService, ArticleService>();
+                .AddScoped<IArticleService, ArticleService>()
+                .AddScoped<ICategoryService, CategoryService>();
 
             services.AddAutoMapper(assembly);
 
