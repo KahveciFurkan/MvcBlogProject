@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using MvcBlogProject.Bll.Describers;
 using MvcBlogProject.Bll.Services.Concrete;
 using MvcBlogProject.Dal.Concrete.Context;
 using MvcBlogProject.Dal.Entities;
@@ -34,6 +35,7 @@ builder.Services.AddIdentity<AppUser, AppRole>(opt =>
 	opt.Password.RequireUppercase = false;
 })
 	.AddRoleManager<RoleManager<AppRole>>().AddEntityFrameworkStores<AppIdentityContext>()
+	.AddErrorDescriber<CustomIdentityErrorDescriber>()
 	.AddDefaultTokenProviders();
 
 builder.Services.ConfigureApplicationCookie(config =>

@@ -125,5 +125,24 @@ namespace MvcBlog.Bll.Services.Concrete
             await _unitOfWork.SaveAsync();
             return article.ArticleName;
         }
+
+        public async Task<List<ArticleDto>> GetAllDeletedArticles()
+        {
+            var articles = await _unitOfWork.GetRepository<Article>().GetAllAsync(x => x.IsDeleted, x => x.Category);
+            var map = mapper.Map<List<ArticleDto>>(articles);
+            return map;
+        }
+
+        public async Task<string> UndoDeleteArticleAsync(int id)
+        {
+            var article = await _unitOfWork.GetRepository<Article>().GetByIdAsync(id);
+            article.IsDeleted = false;
+            article.DeletedDate = null;
+            article.DeletedBy = null;
+
+            await _unitOfWork.GetRepository<Article>().UpdateAsync(article);
+            await _unitOfWork.SaveAsync();
+            return article.ArticleName;
+        }
     }
 }

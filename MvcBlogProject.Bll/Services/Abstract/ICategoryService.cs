@@ -11,11 +11,13 @@ namespace MvcBlogProject.Bll.Services.Abstract
     public interface ICategoryService
     {
         Task<List<CategoryDto>> GetAllCategoriesNonDeleted();
+        Task<List<CategoryDto>> GetAllCategoriesDeleted();
         Task<string> CreateCategoryAsync(CategoryAddDto categoryAddDto);
 
         Task<Category> GetCategoryById(int id);
 
         Task<string> UpdateCategoryAsync(CategoryUpdateDto categoryUpdateDto);
         Task<string> SafeDeleteArticleAsync(int id);
+        Task<string> UndoDeleteArticleAsync(int id);
     }
 }

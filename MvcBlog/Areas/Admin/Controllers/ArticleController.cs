@@ -27,9 +27,16 @@ namespace MvcBlog.Areas.Admin.Controllers
             this.validator = validator;
             this.toastNotification = toastNotification;
         }
+        [HttpGet]
         public  async Task<IActionResult> Index()
         {
             var articles = await articleService.GetAllArticleWithCategoryNonDeletedAsync();
+            return View(articles);
+        }
+        [HttpGet]
+        public async Task<IActionResult> DeletedArticle()
+        {
+            var articles = await articleService.GetAllDeletedArticles();
             return View(articles);
         }
         [HttpGet]
@@ -100,6 +107,14 @@ namespace MvcBlog.Areas.Admin.Controllers
             var title =await articleService.SafeDeleteArticleAsync(id);
             toastNotification.AddWarningToastMessage(Messages.Article.Delete(title));
             return RedirectToAction("Index","Article",new {Area="Admin"});
+
+        }
+        [HttpGet]
+        public async Task<IActionResult> UndoDelete(int id)
+        {
+            var title = await articleService.UndoDeleteArticleAsync(id);
+            toastNotification.AddWarningToastMessage(Messages.Article.UndoDelete(title));
+            return RedirectToAction("Index", "Article", new { Area = "Admin" });
 
         }
     }

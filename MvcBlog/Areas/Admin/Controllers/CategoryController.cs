@@ -32,6 +32,11 @@ namespace MvcBlog.Areas.Admin.Controllers
             var categories = await _categoryService.GetAllCategoriesNonDeleted();
             return View(categories);
         }
+        public async Task<IActionResult> DeletedCategory()
+        {
+            var categories = await _categoryService.GetAllCategoriesDeleted();
+            return View(categories);
+        }
         [HttpGet]
         public IActionResult Add()
         {
@@ -98,6 +103,14 @@ namespace MvcBlog.Areas.Admin.Controllers
         {
             var title = await _categoryService.SafeDeleteArticleAsync(id);
             toastNotification.AddWarningToastMessage(Messages.Category.Delete(title));
+            return RedirectToAction("Index", "Category", new { Area = "Admin" });
+
+        }
+        [HttpGet]
+        public async Task<IActionResult> UndoDelete(int id)
+        {
+            var title = await _categoryService.UndoDeleteArticleAsync(id);
+            toastNotification.AddWarningToastMessage(Messages.Category.UndoDelete(title));
             return RedirectToAction("Index", "Category", new { Area = "Admin" });
 
         }
