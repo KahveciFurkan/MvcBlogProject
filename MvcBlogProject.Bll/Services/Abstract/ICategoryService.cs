@@ -1,4 +1,5 @@
-﻿using MvcBlogProject.Shared.DTOs.Categories;
+﻿using MvcBlogProject.Dal.Entities;
+using MvcBlogProject.Shared.DTOs.Categories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,12 @@ namespace MvcBlogProject.Bll.Services.Abstract
 {
     public interface ICategoryService
     {
-        public Task<List<CategoryDto>> GetAllCategoriesNonDeleted();
+        Task<List<CategoryDto>> GetAllCategoriesNonDeleted();
+        Task<string> CreateCategoryAsync(CategoryAddDto categoryAddDto);
+
+        Task<Category> GetCategoryById(int id);
+
+        Task<string> UpdateCategoryAsync(CategoryUpdateDto categoryUpdateDto);
+        Task<string> SafeDeleteArticleAsync(int id);
     }
 }

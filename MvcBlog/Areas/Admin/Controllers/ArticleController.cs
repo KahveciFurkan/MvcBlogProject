@@ -47,7 +47,7 @@ namespace MvcBlog.Areas.Admin.Controllers
             if (result.IsValid)
             {
                 await articleService.CreateArticleAsync(articleAddDto);
-                toastNotification.AddSuccessToastMessage(Messages.Add(articleAddDto.ArticleName));
+                toastNotification.AddSuccessToastMessage(Messages.Article.Add(articleAddDto.ArticleName));
                 return RedirectToAction("Index", "Article", new { Area = "Admin" });
             }
             else
@@ -80,7 +80,7 @@ namespace MvcBlog.Areas.Admin.Controllers
             if (result.IsValid)
             {
                var title = await articleService.UpdateArticleAsync(articleUpdateDto);
-                toastNotification.AddInfoToastMessage(Messages.Update(title));
+                toastNotification.AddInfoToastMessage(Messages.Article.Update(title));
             }
             else
             {
@@ -98,7 +98,7 @@ namespace MvcBlog.Areas.Admin.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var title =await articleService.SafeDeleteArticleAsync(id);
-            toastNotification.AddWarningToastMessage(Messages.Delete(title));
+            toastNotification.AddWarningToastMessage(Messages.Article.Delete(title));
             return RedirectToAction("Index","Article",new {Area="Admin"});
 
         }

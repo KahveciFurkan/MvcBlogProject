@@ -2,17 +2,52 @@
 {
     public static class Messages
     {
-        public static string Add(string articleTitle)
+        public static class Article
         {
-            return $"{articleTitle} başlıklı makale eklenmiştir.";
+            public static string Add(string articleTitle)
+            {
+                return $"{articleTitle} başlıklı makale eklenmiştir.";
+            }
+            public static string Update(string articleTitle)
+            {
+                return $"{articleTitle} başlıklı makale güncellenmiştir.";
+            }
+            public static string Delete(string articleTitle)
+            {
+                return $"{articleTitle} başlıklı makale silinmiştir.";
+            }
         }
-        public static string Update(string articleTitle)
+        public static class Category
         {
-            return $"{articleTitle} başlıklı makale güncellenmiştir.";
+            public static string Add(string categoryName)
+            {
+                return $"{categoryName} başlıklı kategori eklenmiştir.";
+            }
+            public static string Update(string categoryName)
+            {
+                return $"{categoryName} başlıklı kategori güncellenmiştir.";
+            }
+            public static string Delete(string categoryName)
+            {
+                return $"{categoryName} başlıklı kategori silinmiştir.";
+            }
         }
-        public static string Delete(string articleTitle)
+        public static class User
         {
-            return $"{articleTitle} başlıklı makale silinmiştir.";
+            public static string Add(string UserName)
+            {
+                return $"{UserName} başlıklı kullanıcı eklenmiştir.";
+            }
+            public static string Update(string UserName)
+            {
+                return $"{UserName} başlıklı kullanıcı güncellenmiştir.";
+            }
+            public static string Delete(string UserName)
+            {
+                return $"{UserName} başlıklı kullanıcı silinmiştir.";
+            }
         }
+
+
     }
 }
