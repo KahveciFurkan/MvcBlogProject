@@ -13,13 +13,19 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace MvcBlogProject.Dal.Concrete.Repositories.StandartRepo
 {
-    public class Repository<T>  : IRepository<T> where T : BaseEntity  
+    public class Repository<T>  : IRepository<T> where T : class 
     {
         private readonly StandartContext context;
+        private readonly AppIdentityContext appIdentityContext;
 
         public Repository(StandartContext context)
         {
             this.context = context;
+           
+        }
+        public Repository(AppIdentityContext appIdentityContext)
+        {
+            this.appIdentityContext = appIdentityContext;
         }
         private DbSet<T> Table { get => context.Set<T>(); }
 

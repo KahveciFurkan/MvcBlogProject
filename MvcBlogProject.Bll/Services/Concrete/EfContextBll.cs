@@ -21,6 +21,7 @@ namespace MvcBlogProject.Bll.Services.Concrete
             services.AddScopedDAL()
                 .AddScoped<IArticleService, ArticleService>()
                 .AddScoped<ICategoryService, CategoryService>()
+                .AddScoped<IUserService, UserService>()
                 .AddScoped<IImageHelper, ImageHelper>()
                 .AddSingleton<IHttpContextAccessor,HttpContextAccessor>();
 

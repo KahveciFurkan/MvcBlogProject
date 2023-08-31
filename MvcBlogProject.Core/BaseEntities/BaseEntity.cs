@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MvcBlogProject.Core.BaseEntities
 {
-	public abstract class BaseEntity
+	public abstract class BaseEntity :IBaseEntity
 	{
         public virtual int Id { get; set; }
         public virtual string CreatedBy { get; set; } = "Undefined";

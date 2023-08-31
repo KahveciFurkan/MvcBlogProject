@@ -10,7 +10,8 @@ namespace MvcBlogProject.Dal.UnitOfWorks
 {
     public interface IUnitOfWork :IAsyncDisposable
     {
-        IRepository<T> GetRepository<T>() where T : BaseEntity;
+        IRepository<T> GetRepository<T>() where T : class;
+        IRepository<T> GetRepositoryApp<T>() where T : class;
         Task<int> SaveAsync();
 
         int Save();

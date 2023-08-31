@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MvcBlog.Consts;
 using MvcBlog.ResultMessages;
 using MvcBlogProject.Bll.FluentValidations;
 using MvcBlogProject.Bll.Services.Abstract;
@@ -28,24 +30,28 @@ namespace MvcBlog.Areas.Admin.Controllers
             this.toastNotification = toastNotification;
         }
         [HttpGet]
+        [Authorize(Roles = $"{RoleConst.SuperAdmin},{RoleConst.Admin},{RoleConst.User}")]
         public  async Task<IActionResult> Index()
         {
             var articles = await articleService.GetAllArticleWithCategoryNonDeletedAsync();
             return View(articles);
         }
         [HttpGet]
+        [Authorize(Roles = $"{RoleConst.SuperAdmin},{RoleConst.Admin}")]
         public async Task<IActionResult> DeletedArticle()
         {
             var articles = await articleService.GetAllDeletedArticles();
             return View(articles);
         }
         [HttpGet]
+        [Authorize(Roles = $"{RoleConst.SuperAdmin},{RoleConst.Admin}")]
         public async Task<IActionResult> Add()
         {
             var categories = await categoryService.GetAllCategoriesNonDeleted();
             return View(new ArticleAddDto { Categories=categories});
         }
         [HttpPost]
+        [Authorize(Roles = $"{RoleConst.SuperAdmin},{RoleConst.Admin}")]
         public async Task<IActionResult> Add(ArticleAddDto articleAddDto)
         {
             var map = mapper.Map<Article>(articleAddDto);
@@ -68,6 +74,7 @@ namespace MvcBlog.Areas.Admin.Controllers
             return View(new ArticleAddDto { Categories = categories });
         }
         [HttpGet]
+        [Authorize(Roles = $"{RoleConst.SuperAdmin},{RoleConst.Admin}")]
         public async Task<IActionResult> Update(int id)
         {
             var article = await articleService.GetArticleWithCategoryNonDeletedAsync(id);
@@ -80,6 +87,7 @@ namespace MvcBlog.Areas.Admin.Controllers
      
         }
         [HttpPost]
+        [Authorize(Roles = $"{RoleConst.SuperAdmin},{RoleConst.Admin}")]
         public async Task<IActionResult> Update(ArticleUpdateDto articleUpdateDto)
         {
             var map = mapper.Map<Article>(articleUpdateDto);
@@ -102,6 +110,7 @@ namespace MvcBlog.Areas.Admin.Controllers
 
         }
         [HttpGet]
+        [Authorize(Roles = $"{RoleConst.SuperAdmin},{RoleConst.Admin}")]
         public async Task<IActionResult> Delete(int id)
         {
             var title =await articleService.SafeDeleteArticleAsync(id);
@@ -110,6 +119,7 @@ namespace MvcBlog.Areas.Admin.Controllers
 
         }
         [HttpGet]
+        [Authorize(Roles = $"{RoleConst.SuperAdmin},{RoleConst.Admin}")]
         public async Task<IActionResult> UndoDelete(int id)
         {
             var title = await articleService.UndoDeleteArticleAsync(id);

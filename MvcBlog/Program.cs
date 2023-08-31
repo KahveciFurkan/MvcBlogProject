@@ -34,7 +34,8 @@ builder.Services.AddIdentity<AppUser, AppRole>(opt =>
 	opt.Password.RequireLowercase = false;
 	opt.Password.RequireUppercase = false;
 })
-	.AddRoleManager<RoleManager<AppRole>>().AddEntityFrameworkStores<AppIdentityContext>()
+	.AddRoleManager<RoleManager<AppRole>>()
+	.AddEntityFrameworkStores<AppIdentityContext>()
 	.AddErrorDescriber<CustomIdentityErrorDescriber>()
 	.AddDefaultTokenProviders();
 

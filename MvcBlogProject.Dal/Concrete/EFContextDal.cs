@@ -29,6 +29,7 @@ namespace MvcBlogProject.Dal.Concrete
 					opt.UseSqlServer(idenityCon).UseLazyLoadingProxies();
 				})
 				.AddScoped<IUnitOfWork,UnitOfWork>()
+				//.AddScoped<IPrivate,Private>()
 				.AddScoped<IArticleRepo, ArticleRepo>()
 				.AddScoped<IUserRepo, UserRepo>()
 				.AddScoped<IRoleRepo, RoleRepo>();
