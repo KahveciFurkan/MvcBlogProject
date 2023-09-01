@@ -33,6 +33,27 @@ namespace MvcBlog.Bll.Services.Concrete
             this.imageHelper = imageHelper;
             _user = httpContextAccessor.HttpContext.User;
         }
+        public async Task<ArticleListDto> GetAllByPagingAsync(int? categoryId,int currentpage=1,int pageSize =3, bool isAscending = false)
+        {
+            pageSize= pageSize>20 ? 20 : pageSize;
+            var articles = categoryId == null
+                ? await _unitOfWork.GetRepository<Article>().GetAllAsync(x => !x.IsDeleted, x => x.Category, x => x.Image)
+                : await _unitOfWork.GetRepository<Article>().GetAllAsync(x => x.CategoryId == categoryId && !x.IsDeleted, x => x.Category, x => x.Image);
+
+            var sortedArticles = isAscending
+                ? articles.OrderBy(x => x.CreatedDate).Skip((currentpage - 1) * pageSize).Take(pageSize).ToList()
+                : articles.OrderByDescending(x => x.CreatedDate).Skip((currentpage - 1) * pageSize).Take(pageSize).ToList();
+            return new ArticleListDto
+            {
+                Articles=sortedArticles,
+                CategoryId =categoryId == null ? null : categoryId.Value,
+                CurrentPage = currentpage,
+                PageSize = pageSize,
+                IsAscending = isAscending,
+                TotalCount = articles.Count
+            };
+        }
+
 
         public async Task CreateArticleAsync(ArticleAddDto articleAddDto)
         {

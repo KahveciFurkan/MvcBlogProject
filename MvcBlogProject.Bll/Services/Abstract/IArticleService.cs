@@ -17,5 +17,6 @@ namespace MvcBlogProject.Bll.Services.Abstract
         Task<string> UpdateArticleAsync(ArticleUpdateDto articleUpdateDto);
         Task<string> SafeDeleteArticleAsync(int id);
         Task<string> UndoDeleteArticleAsync(int id);
+        Task<ArticleListDto> GetAllByPagingAsync(int? categoryId, int currentpage = 1, int pageSize = 3, bool isAscending = false);
     }
 }

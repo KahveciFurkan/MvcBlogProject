@@ -11,6 +11,7 @@ namespace MvcBlogProject.Bll.Services.Abstract
     public interface ICategoryService
     {
         Task<List<CategoryDto>> GetAllCategoriesNonDeleted();
+        Task<List<CategoryDto>> GetAllCategoriesNonDeletedTake24();
         Task<List<CategoryDto>> GetAllCategoriesDeleted();
         Task<string> CreateCategoryAsync(CategoryAddDto categoryAddDto);
 

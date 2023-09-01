@@ -2,6 +2,7 @@
 
 using MvcBlog.Models;
 using MvcBlogProject.Bll.Services.Abstract;
+using MvcBlogProject.Shared.DTOs.Articles;
 using System.Diagnostics;
 
 namespace MvcBlog.Controllers
@@ -17,9 +18,10 @@ namespace MvcBlog.Controllers
             this.articleService = articleService;
         }
 
-		public async Task<IActionResult> Index()
+		public async Task<IActionResult> Index(int? categoryId, int currentpage = 1, int pageSize = 3, bool isAscending = false)
 		{
-			var articles = await articleService.GetAllArticleWithCategoryNonDeletedAsync();
+			var articles = await articleService.GetAllByPagingAsync(categoryId,currentpage,pageSize,isAscending);
+
 			return View(articles);
 		}
 
@@ -33,5 +35,10 @@ namespace MvcBlog.Controllers
 		{
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 		}
-	}
+        public async Task<IActionResult> Detail(int id)
+        {
+            var article = await articleService.GetArticleWithCategoryNonDeletedAsync(id);
+			return View(article);
+        }
+    }
 }
