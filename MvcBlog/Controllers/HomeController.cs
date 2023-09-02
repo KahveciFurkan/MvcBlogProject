@@ -4,6 +4,7 @@ using MvcBlog.Models;
 using MvcBlogProject.Bll.Services.Abstract;
 using MvcBlogProject.Shared.DTOs.Articles;
 using System.Diagnostics;
+using System.Drawing.Printing;
 
 namespace MvcBlog.Controllers
 {
@@ -25,9 +26,10 @@ namespace MvcBlog.Controllers
 			return View(articles);
 		}
 
-		public IActionResult Privacy()
+		public async Task<IActionResult> Hakkımızda(int? categoryId, int currentpage = 1, int pageSize = 3, bool isAscending = false)
 		{
-			return View();
+            var articles = await articleService.GetAllByPagingAsync(categoryId, currentpage, pageSize, isAscending);
+            return View(articles);
 		}
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

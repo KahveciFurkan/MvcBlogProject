@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MvcBlogProject.Bll.Services.Abstract;
 using MvcBlogProject.Dal.Entities;
 using MvcBlogProject.Shared.DTOs.Users;
 
@@ -11,7 +12,7 @@ namespace MvcBlog.Areas.Admin.ViewComponents
         private readonly UserManager<AppUser> userManager;
         private readonly IMapper mapper;
 
-        public DashBoardHeaderViewComponent(UserManager<AppUser> userManager,IMapper  mapper)
+        public DashBoardHeaderViewComponent(UserManager<AppUser> userManager,IMapper  mapper,IUserService userService)
         {
             this.userManager = userManager;
             this.mapper = mapper;

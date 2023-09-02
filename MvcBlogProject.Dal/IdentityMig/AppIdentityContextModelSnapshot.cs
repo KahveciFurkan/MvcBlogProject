@@ -170,21 +170,21 @@ namespace MvcBlogProject.Dal.IdentityMig
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "3175bee4-7d5f-462a-a63a-f1e9a846d2fd",
+                            ConcurrencyStamp = "90928634-0d05-48c3-813a-eab1b4addf24",
                             Name = "SuperAdmin",
                             NormalizedName = "SUPERADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "d76e4da9-f12e-4a39-a625-299c756a4fca",
+                            ConcurrencyStamp = "5f4456db-ce86-4fec-aa30-b490bd24f6ef",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "8a5bcf0d-64c4-4848-a07e-e4e960d75bd9",
+                            ConcurrencyStamp = "ab0fa59b-b583-4596-88be-09ad95c63855",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -204,6 +204,9 @@ namespace MvcBlogProject.Dal.IdentityMig
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ConfirmCode")
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .HasMaxLength(100)
@@ -237,7 +240,13 @@ namespace MvcBlogProject.Dal.IdentityMig
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaswordConfirm")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
@@ -273,7 +282,7 @@ namespace MvcBlogProject.Dal.IdentityMig
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "31129582-89c6-4582-8937-df0fc1622c94",
+                            ConcurrencyStamp = "e48dbebd-23a2-4b50-adbc-bc0a9ac4edde",
                             Email = "superadmin@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Eren",
@@ -282,10 +291,10 @@ namespace MvcBlogProject.Dal.IdentityMig
                             LockoutEnabled = false,
                             NormalizedEmail = "SUPERADMIN@GMAIL.COM",
                             NormalizedUserName = "SUPERADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOpqp7XlHkztVvvCoN8/r3uQP6p7lP9os/OqwhlUaXLK9O97rbyQFDsjtmnZwCVulw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEN0Ia3X/nCb+A9DelR4ZBEgsv5k2b6NQiWBOUhWA//3kcgyAlczM9dX4xTGOmZEWQw==",
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "93b741aa-3e93-43f0-ab08-f00bec5a32d8",
+                            SecurityStamp = "9682c262-cdd5-4925-ba18-8e7b7413e606",
                             TwoFactorEnabled = false,
                             UserName = "superadmin@gmail.com"
                         },
@@ -293,7 +302,7 @@ namespace MvcBlogProject.Dal.IdentityMig
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e8ea41a4-e3c2-438a-a644-a0d02b1568bd",
+                            ConcurrencyStamp = "0d1541e3-6973-45a7-ab1d-1c0011c5f0fd",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Umut",
@@ -302,10 +311,10 @@ namespace MvcBlogProject.Dal.IdentityMig
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEK+sdph9YxvCaugkEFmvVI5GcZookSd2nygqje/HkWPuXRGNmB32N9zFLnQyTJ0ebA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJDP7uWdm9zElth1xkGMSgtvGsQl+DxoqNVrg1NT2FAbHGOg3JYJgp34LW7d+CmzFw==",
                             PhoneNumber = "1234567870",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "51bdabb6-2b7c-4ddd-bd68-90b22614520e",
+                            SecurityStamp = "1210d44d-2c9c-423f-90b4-adaf77e17d2a",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         });
@@ -384,7 +393,7 @@ namespace MvcBlogProject.Dal.IdentityMig
                             CategoryId = 1,
                             Content = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.",
                             CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 8, 29, 22, 8, 15, 495, DateTimeKind.Local).AddTicks(7344),
+                            CreatedDate = new DateTime(2023, 9, 2, 16, 30, 13, 153, DateTimeKind.Local).AddTicks(2459),
                             ImageId = 1,
                             IsDeleted = false,
                             UserId = 1,
@@ -397,7 +406,7 @@ namespace MvcBlogProject.Dal.IdentityMig
                             CategoryId = 1,
                             Content = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.",
                             CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 8, 29, 22, 8, 15, 495, DateTimeKind.Local).AddTicks(7348),
+                            CreatedDate = new DateTime(2023, 9, 2, 16, 30, 13, 153, DateTimeKind.Local).AddTicks(2464),
                             ImageId = 1,
                             IsDeleted = false,
                             UserId = 2,
@@ -410,7 +419,7 @@ namespace MvcBlogProject.Dal.IdentityMig
                             CategoryId = 1,
                             Content = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.",
                             CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 8, 29, 22, 8, 15, 495, DateTimeKind.Local).AddTicks(7352),
+                            CreatedDate = new DateTime(2023, 9, 2, 16, 30, 13, 153, DateTimeKind.Local).AddTicks(2467),
                             ImageId = 1,
                             IsDeleted = false,
                             UserId = 2,
@@ -462,7 +471,7 @@ namespace MvcBlogProject.Dal.IdentityMig
                         {
                             Id = 1,
                             CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 8, 29, 22, 8, 15, 495, DateTimeKind.Local).AddTicks(8391),
+                            CreatedDate = new DateTime(2023, 9, 2, 16, 30, 13, 153, DateTimeKind.Local).AddTicks(3522),
                             IsDeleted = false,
                             Name = "Doğa"
                         },
@@ -470,7 +479,7 @@ namespace MvcBlogProject.Dal.IdentityMig
                         {
                             Id = 2,
                             CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 8, 29, 22, 8, 15, 495, DateTimeKind.Local).AddTicks(8395),
+                            CreatedDate = new DateTime(2023, 9, 2, 16, 30, 13, 153, DateTimeKind.Local).AddTicks(3526),
                             IsDeleted = false,
                             Name = "Spor"
                         },
@@ -478,7 +487,7 @@ namespace MvcBlogProject.Dal.IdentityMig
                         {
                             Id = 3,
                             CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 8, 29, 22, 8, 15, 495, DateTimeKind.Local).AddTicks(8398),
+                            CreatedDate = new DateTime(2023, 9, 2, 16, 30, 13, 153, DateTimeKind.Local).AddTicks(3529),
                             IsDeleted = false,
                             Name = "Magazin"
                         });
@@ -534,7 +543,7 @@ namespace MvcBlogProject.Dal.IdentityMig
                         {
                             Id = 1,
                             CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 8, 29, 22, 8, 15, 495, DateTimeKind.Local).AddTicks(9551),
+                            CreatedDate = new DateTime(2023, 9, 2, 16, 30, 13, 153, DateTimeKind.Local).AddTicks(5013),
                             FileName = "images/test",
                             FileType = "jpg",
                             ImageType = 0,
@@ -544,7 +553,7 @@ namespace MvcBlogProject.Dal.IdentityMig
                         {
                             Id = 2,
                             CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 8, 29, 22, 8, 15, 495, DateTimeKind.Local).AddTicks(9554),
+                            CreatedDate = new DateTime(2023, 9, 2, 16, 30, 13, 153, DateTimeKind.Local).AddTicks(5017),
                             FileName = "images/zay",
                             FileType = "jpg",
                             ImageType = 0,
@@ -554,7 +563,7 @@ namespace MvcBlogProject.Dal.IdentityMig
                         {
                             Id = 3,
                             CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 8, 29, 22, 8, 15, 495, DateTimeKind.Local).AddTicks(9558),
+                            CreatedDate = new DateTime(2023, 9, 2, 16, 30, 13, 153, DateTimeKind.Local).AddTicks(5021),
                             FileName = "images/uzaay",
                             FileType = "png",
                             ImageType = 0,
